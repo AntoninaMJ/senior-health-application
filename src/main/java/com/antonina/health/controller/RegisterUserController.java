@@ -1,7 +1,7 @@
 package com.antonina.health.controller;
 
-import com.antonina.health.form.RegisterForm;
-import com.antonina.health.service.RegisterService;
+import com.antonina.health.form.RegisterUserForm;
+import com.antonina.health.service.RegisterUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,26 +13,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/register")
-public class RegisterController {
+public class RegisterUserController {
 
-    private final RegisterService registerService;
+    private final RegisterUserService registerUserService;
 
-    public RegisterController(RegisterService registerService) {
-        this.registerService = registerService;
+    public RegisterUserController(RegisterUserService registerUserService) {
+        this.registerUserService = registerUserService;
     }
 
     @GetMapping
     public String register(Model model) {
-        model.addAttribute("registerForm", new RegisterForm());
+        model.addAttribute("registerUserForm", new RegisterUserForm());
         return "register";
     }
 
     @PostMapping
-    public String doRegister(@Validated @ModelAttribute RegisterForm registerForm, BindingResult bindingResult) {
+    public String doRegister(@Validated @ModelAttribute RegisterUserForm registerUserForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        registerService.registerUser(registerForm);
+        registerUserService.registerUser(registerUserForm);
         return "login";
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "health")
+@ConfigurationProperties(prefix = "senior-health")
 public class ApplicationConfigProperties {
 
     private int minPressureSys;

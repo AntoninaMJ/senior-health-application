@@ -9,7 +9,7 @@
 <body>
 
 <div class="container">
-    <form class="form-signin" method="POST" th:action="@{/insert}" th:object="${insertForm}">
+    <form class="form-signin" method="POST" th:action="@{/insert}" th:object="${insertResultForm}">
         <h2 class="form-signin-heading">Insert form</h2>
 
         <label for="inputPressureSys">Pressure SYS</label>
@@ -23,7 +23,7 @@
         <span th:if="${#fields.hasErrors('pressureDia')}" th:errors="*{pressureDia}">Pressure Error</span>
 
         <label for="inputTemperature">Temperature</label>
-        <input type="number" id="inputTemperature" th:field="*{temperature}" class="form-control"
+        <input type="text" id="inputTemperature" th:field="*{temperature}" class="form-control"
                placeholder="Temperature">
         <span th:if="${#fields.hasErrors('temperature')}" th:errors="*{temperature}">Temperature Error</span>
 

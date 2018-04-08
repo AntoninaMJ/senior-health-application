@@ -1,8 +1,8 @@
 package com.antonina.health.controller;
 
 
-import com.antonina.health.form.InsertForm;
-import com.antonina.health.service.InsertService;
+import com.antonina.health.form.InsertResultForm;
+import com.antonina.health.service.InsertResultService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,26 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/insert")
-public class InsertController {
+public class InsertResultController {
 
-    private final InsertService insertService;
+    private final InsertResultService insertResultService;
 
-    public InsertController(InsertService insertService) {
-        this.insertService = insertService;
+    public InsertResultController(InsertResultService insertResultService) {
+        this.insertResultService = insertResultService;
     }
 
     @GetMapping
     public String insert(Model model) {
-        model.addAttribute("insertForm", new InsertForm());
+        model.addAttribute("insertResultForm", new InsertResultForm());
         return "insert";
     }
 
     @PostMapping
-    public String doInsert(@Validated @ModelAttribute InsertForm insertForm, BindingResult bindingResult) {
+    public String doInsert(@Validated @ModelAttribute InsertResultForm insertResultForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "insert";
         }
-        insertService.insertResults(insertForm);
+        insertResultService.insertResults(insertResultForm);
         return "history";
     }
 }

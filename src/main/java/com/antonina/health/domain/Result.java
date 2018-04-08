@@ -1,6 +1,7 @@
 package com.antonina.health.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity //info ze to jest baza danych
@@ -10,11 +11,13 @@ public class Result {
     @Id //@ - annotation, pokazuje co jest PK's
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private LocalDateTime dateTime;
     private Integer pressureSys;
     private Integer pressureDia;
-    private Float temperature;
+    private BigDecimal temperature;
     private Integer mood;
 
     public Long getId() {
@@ -25,12 +28,12 @@ public class Result {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getDateTime() {
@@ -57,11 +60,11 @@ public class Result {
         this.pressureDia = pressureDia;
     }
 
-    public Float getTemperature() {
+    public BigDecimal getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Float temperature) {
+    public void setTemperature(BigDecimal temperature) {
         this.temperature = temperature;
     }
 

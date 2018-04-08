@@ -3,7 +3,7 @@ package com.antonina.health.form;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class RegisterForm {
+public class RegisterUserForm {
 
     @NotEmpty
     @Email

@@ -28,7 +28,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-	compile('org.mariadb.jdbc:mariadb-java-client:1.5.7')
+	//compile('org.mariadb.jdbc:mariadb-java-client:1.5.7')
+	runtime fileTree(dir: 'lib', include: '*.jar')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 }

@@ -1,10 +1,9 @@
 package com.antonina.health.form;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
-public class InsertForm {
+public class InsertResultForm {
 
     @NotNull
     @Max(200)
@@ -15,9 +14,9 @@ public class InsertForm {
     @Min(50)
     private Integer pressureDia;
     @NotNull
-    @Max(42)
-    @Min(34)
-    private Float temperature;
+    @DecimalMax("42.0")
+    @DecimalMin("34.0")
+    private BigDecimal temperature;
     @NotNull
     @Max(5)
     @Min(1)
@@ -39,11 +38,11 @@ public class InsertForm {
         this.pressureDia = pressureDia;
     }
 
-    public Float getTemperature() {
+    public BigDecimal getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Float temperature) {
+    public void setTemperature(BigDecimal temperature) {
         this.temperature = temperature;
     }
 
