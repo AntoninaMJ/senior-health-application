@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p th:text="'User name: ' + ${name}"/>
+
+<p>
+    <a class="btn btn-primary" href="/history" role="button">history</a>
+    <a class="btn btn-primary" href="/insert" role="button">insert data</a>
+    <a class="btn btn-primary" href="/settings" role="button">settings</a>
+    <a class="btn btn-primary" href="/logout" role="button">logout</a>
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Settings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p th:text="'Ustawienia użytkownika: ' + ${name}"/>
+
+<p>
+
+    <a class="btn btn-primary" role="button">edit</a>
+    <a class="btn btn-primary" role="button">save</a>
+    <a class="btn btn-primary" role="button">cancel</a>
+    <a class="btn btn-primary" href="/" role="button">home</a>
+
+</p>
+
+</body>
+</html>

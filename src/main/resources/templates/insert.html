@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form class="form-signin" method="POST" th:action="@{/insert}" th:object="${insertForm}">
+        <h2 class="form-signin-heading">Insert form</h2>
+
+        <label for="inputPressureSys">Pressure SYS</label>
+        <input type="number" id="inputPressureSys" th:field="*{pressureSys}" class="form-control"
+               placeholder="Pressure SYS">
+        <span th:if="${#fields.hasErrors('pressureSys')}" th:errors="*{pressureSys}">Pressure Error</span>
+
+        <label for="inputPressureDia">Pressure DIA</label>
+        <input type="number" id="inputPressureDia" th:field="*{pressureDia}" class="form-control"
+               placeholder="Pressure DIA">
+        <span th:if="${#fields.hasErrors('pressureDia')}" th:errors="*{pressureDia}">Pressure Error</span>
+
+        <label for="inputTemperature">Temperature</label>
+        <input type="number" id="inputTemperature" th:field="*{temperature}" class="form-control"
+               placeholder="Temperature">
+        <span th:if="${#fields.hasErrors('temperature')}" th:errors="*{temperature}">Temperature Error</span>
+
+        <label for="inputMood">Mood</label>
+        <input type="number" id="inputMood" th:field="*{mood}" class="form-control" placeholder="Mood">
+        <span th:if="${#fields.hasErrors('mood')}" th:errors="*{mood}">Mood Error</span>
+
+        <br><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+        <br>
+        <a class="btn btn-lg btn-primary btn-block" href="/" role="button">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

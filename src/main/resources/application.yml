@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/seniorhealth
+    username: seniorhealth
+    password: paSs1234Word
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+pressure:
+  minPressureSys: 0
+  maxPressureSys: 100
+  minPressureDia: 0
+  maxPressureDia: 100
+  optTemerature: 36.6
+  optMood: 3

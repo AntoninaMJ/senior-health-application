@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" method="POST" th:action="@{/register}" th:object="${registerForm}">
+        <h2 class="form-signin-heading">Registration form</h2>
+
+        <label for="inputEmail">Email address</label>
+        <input type="text" id="inputEmail" th:field="*{email}" class="form-control" placeholder="Email address" required
+               autofocus>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+
+        <label for="inputPassword">Password</label>
+        <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password"
+               required>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Email Error</span>
+
+        <label for="inputFirstName">First name</label>
+        <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control" placeholder="First name">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</span>
+
+        <label for="inputLastName">Last name</label>
+        <input type="text" id="inputLastName" th:field="*{lastName}" class="form-control" placeholder="Last name">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</span>
+
+        <br><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form method="POST" action="/login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail">Email address</label>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Email address" required
+               autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <br><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <br>
+    <a class="btn btn-primary" href="/register" role="button">register</a>
+    <a class="btn btn-primary" href="/forgot-password" role="button">forgot password</a>
+</div>
+
+[[${error}]]
+
+<!--label - nagłówek
+placeholder - w srodku
+type - text=normalnie, password=gwiazdki, submit=wysyła ten formularz (form method(http): get, post, delete i td) -->
+
+</body>
+</html>
