@@ -17,6 +17,7 @@ public class Result {
     private LocalDateTime dateTime;
     private Integer pressureSys;
     private Integer pressureDia;
+    @Column(name = "temperature", precision = 3, scale = 1)
     private BigDecimal temperature;
     private Integer mood;
 

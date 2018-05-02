@@ -13,47 +13,68 @@
 
         <h2 class="form-signin-heading">Registration form</h2>
 
-        <label for="inputEmail">Email address</label>
-        <input type="text" id="inputEmail" th:field="*{email}" class="form-control" placeholder="Email address" required
-               autofocus>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+        <div th:if="${error}" class="alert alert-danger" role="alert">[[${error}]]</div>
 
-        <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password"
-               required>
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="text" id="inputEmail" th:field="*{email}" class="form-control" placeholder="Email address"
+                   required
+                   autofocus>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+        </div>
 
-        <label for="inputPasswordRepeat">Repeat password</label>
-        <input type="password" id="inputPasswordRepeat" th:field="*{passwordRepeat}" class="form-control"
-               placeholder="Password"
-               required>
-        <span th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}">Repeat password Error</span>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password"
+                   required>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        </div>
 
-        <label for="inputFirstName">First name</label>
-        <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control" placeholder="First name">
-        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</span>
+        <div class="form-group">
+            <label for="inputPasswordRepeat">Repeat password</label>
+            <input type="password" id="inputPasswordRepeat" th:field="*{passwordRepeat}" class="form-control"
+                   placeholder="Password"
+                   required>
+            <span th:if="${#fields.hasErrors('passwordRepeat')}"
+                  th:errors="*{passwordRepeat}">Repeat password Error</span>
+        </div>
 
-        <label for="inputLastName">Last name</label>
-        <input type="text" id="inputLastName" th:field="*{lastName}" class="form-control" placeholder="Last name">
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</span>
+        <div class="form-group">
+            <label for="inputFirstName">First name</label>
+            <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control"
+                   placeholder="First name">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</span>
+        </div>
 
-        <label for="inputBirthDate">Birth date</label>
-        <input type="date" id="inputBirthDate" th:field="*{birthDate}" class="form-control" placeholder="Birth date">
-        <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date Error</span>
+        <div class="form-group">
+            <label for="inputLastName">Last name</label>
+            <input type="text" id="inputLastName" th:field="*{lastName}" class="form-control" placeholder="Last name">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</span>
+        </div>
 
-        <input class="form-check-input" type="radio" id="inputGender1" name="inputGender" th:field="*{gender}"
-               value="MALE" checked>
-        <label class="form-check-label" for="inputGender1">Male gender</label>
+        <div class="form-group">
+            <label for="inputBirthDate">Birth date</label>
+            <input type="date" id="inputBirthDate" th:field="*{birthDate}" class="form-control"
+                   placeholder="Birth date">
+            <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date Error</span>
+        </div>
 
-        <input class="form-check-input" type="radio" id="inputGender2" name="inputGender" th:field="*{gender}"
-               value="FEMALE" checked>
-        <label class="form-check-label" for="inputGender2">Female gender</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="inputGender1" name="inputGender" th:field="*{gender}"
+                   value="MALE" checked>
+            <label class="form-check-label" for="inputGender1">Male gender</label>
+        </div>
 
-        <br><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="inputGender2" name="inputGender" th:field="*{gender}"
+                   value="FEMALE" checked>
+            <label class="form-check-label" for="inputGender2">Female gender</label>
+        </div>
         <br>
-        <a class="btn btn-lg btn-primary btn-block" href="/">Home</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
+    <br>
+    <a class="btn btn-lg btn-primary btn-block" href="/">Home</a>
 </div>
 </body>
 </html>

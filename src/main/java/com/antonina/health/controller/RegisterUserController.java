@@ -2,7 +2,8 @@ package com.antonina.health.controller;
 
 import com.antonina.health.domain.User;
 import com.antonina.health.form.RegisterUserForm;
-import com.antonina.health.service.RegisterUserService;
+import com.antonina.health.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class RegisterUserController {
 
-    private final RegisterUserService registerUserService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegisterUserController(RegisterUserService registerUserService) {
-        this.registerUserService = registerUserService;
+    public RegisterUserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -29,23 +32,40 @@ public class RegisterUserController {
     }
 
     @PostMapping
-    public String doRegister(@Validated @ModelAttribute RegisterUserForm registerUserForm, BindingResult bindingResult) {
-        User user = registerUserService.getUserRepository().findByEmail(registerUserForm.getEmail());
+    public String doRegister(@Validated @ModelAttribute RegisterUserForm registerUserForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "register";
         }
 
-        if (user == null) {
-            if (registerUserForm.getPassword().equals(registerUserForm.getPasswordRepeat())) {
-                registerUserService.registerUser(registerUserForm);
-                return "redirect:/login";
-            }
-            return "register";
-        } else {
-            user.setActive(true);
-            registerUserService.getUserRepository().save(user);
+        User user = userRepository.findByEmailAndActiveTrue(registerUserForm.getEmail());
 
-            return "redirect:/login";
+        if (user != null) {
+            return setError(model, "User with given email already exists");
         }
+
+        if (!registerUserForm.getPassword().equals(registerUserForm.getPasswordRepeat())) {
+            return setError(model, "Repeat password should be the same as password");
+        }
+
+        registerUser(registerUserForm);
+
+        return "redirect:/login";
+    }
+
+    private String setError(Model model, String message) {
+        model.addAttribute("error", message);
+        return "register";
+    }
+
+    private void registerUser(RegisterUserForm registerUserForm) {
+        User user = new User();
+        user.setEmail(registerUserForm.getEmail());
+        user.setPassword(passwordEncoder.encode(registerUserForm.getPassword()));
+        user.setFirstName(registerUserForm.getFirstName());
+        user.setLastName(registerUserForm.getLastName());
+        user.setBirthDate(registerUserForm.getBirthDate());
+        user.setGender(registerUserForm.getGender());
+        user.setActive(true);
+        userRepository.save(user);
     }
 }

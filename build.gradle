@@ -28,6 +28,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-mail")
 	compile('org.mariadb.jdbc:mariadb-java-client:1.5.7')
 	compile("org.springframework.boot:spring-boot-devtools")
 	//runtime fileTree(dir: 'lib', include: '*.jar')

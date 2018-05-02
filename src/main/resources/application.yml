@@ -11,6 +11,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update # auto create/update tables in db
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: seniorhealth123@gmail.com
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
 
 server:
   port: 8080

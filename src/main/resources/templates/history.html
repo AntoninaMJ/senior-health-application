@@ -4,6 +4,7 @@
     <title>Settings</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -41,7 +42,7 @@
 
         </tbody>
     </table>
-    <nav aria-label="Page navigation">
+    <nav th:if="${results.numberOfElements > 0}" aria-label="History navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item" th:if="${results.hasPrevious()}"><a class="page-link"
                                                                       th:href="@{/history(sort=${sort}, dir=${dir}, page=${results.number - 1})}">Previous</a>

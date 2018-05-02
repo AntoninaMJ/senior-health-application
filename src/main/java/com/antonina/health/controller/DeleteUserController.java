@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/deleteUser")
 public class DeleteUserController {
+
     private final UserService userService;
+    private final UserRepository userRepository;
 
     public DeleteUserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
     public String delete() {
         User user = userService.getLoggedUser();
         user.setActive(false);
-        userService.getRepository().save(user);
+        userRepository.save(user);
         return "redirect:/login";
     }
 }

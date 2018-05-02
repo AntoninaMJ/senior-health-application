@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @GetMapping("/login")
-    private String login(@RequestParam(required = false) String error, Model model) {
+    private String login(@RequestParam(required = false) String error,
+                         @RequestParam(required = false) String forgotPassword, Model model) {
         if (error != null) {
-            model.addAttribute("error", "Błędny login lub hasło!");
+            model.addAttribute("error", "Wrong login or password");
         }
+
+        if (forgotPassword != null) {
+            model.addAttribute("success", "E-mail with new password has been sent");
+        }
+
         return "login";
     }
 }

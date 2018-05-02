@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class RegisterUserForm {
@@ -13,19 +14,18 @@ public class RegisterUserForm {
     @Email
     private String email;
     @NotEmpty
+    @Size(min = 5, max = 50)
     private String password;
     @NotEmpty
+    @Size(min = 5, max = 50)
     private String passwordRepeat;
     @NotEmpty
     private String firstName;
     @NotEmpty
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    //@NotNull
     private LocalDate birthDate;
-    //@NotNull
     private Gender gender;
-
 
     public String getEmail() {
         return email;

@@ -4,6 +4,7 @@
     <title>Home Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/form.css">
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -12,36 +13,55 @@
     <form class="form-signin" method="POST" th:action="@{/insert}" th:object="${resultForm}">
         <h2 class="form-signin-heading">Insert form</h2>
 
-        <label for="inputPressureSys">Pressure SYS</label>
-        <input type="number" id="inputPressureSys" th:field="*{pressureSys}" class="form-control"
-               placeholder="Pressure SYS">
-        <span th:if="${#fields.hasErrors('pressureSys')}" th:errors="*{pressureSys}">Pressure Error</span>
-
-        <label for="inputPressureDia">Pressure DIA</label>
-        <input type="number" id="inputPressureDia" th:field="*{pressureDia}" class="form-control"
-               placeholder="Pressure DIA">
-        <span th:if="${#fields.hasErrors('pressureDia')}" th:errors="*{pressureDia}">Pressure Error</span>
-
-        <label for="inputTemperature">Temperature</label>
-        <input type="text" id="inputTemperature" th:field="*{temperature}" class="form-control"
-               placeholder="Temperature">
-        <span th:if="${#fields.hasErrors('temperature')}" th:errors="*{temperature}">Temperature Error</span>
-
-        <label for="inputMood">Mood</label>
-        <!--
-        <br/>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-            <label class="form-check-label" for="inlineRadio1">1</label>
+        <div class="form-group">
+            <label for="inputPressureSys">Pressure SYS</label>
+            <input type="number" id="inputPressureSys" th:field="*{pressureSys}" class="form-control"
+                   placeholder="Pressure SYS">
+            <span class="invalid-feedback" th:if="${#fields.hasErrors('pressureSys')}" th:errors="*{pressureSys}">Pressure Error</span>
         </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            <label class="form-check-label" for="inlineRadio2">2</label>
-        -->
-        <input type="number" id="inputMood" th:field="*{mood}" class="form-control" placeholder="Mood">
-        <span th:if="${#fields.hasErrors('mood')}" th:errors="*{mood}">Mood Error</span>
 
-        <br><br>
+        <div class="form-group">
+            <label for="inputPressureDia">Pressure DIA</label>
+            <input type="number" id="inputPressureDia" th:field="*{pressureDia}" class="form-control"
+                   placeholder="Pressure DIA">
+            <span class="invalid-feedback" th:if="${#fields.hasErrors('pressureDia')}" th:errors="*{pressureDia}">Pressure Error</span>
+        </div>
+
+        <div class="form-group">
+            <label for="inputTemperature">Temperature</label>
+            <input type="text" id="inputTemperature" th:field="*{temperature}" class="form-control"
+                   placeholder="Temperature">
+            <span class="invalid-feedback" th:if="${#fields.hasErrors('temperature')}" th:errors="*{temperature}">Temperature Error</span>
+        </div>
+
+        <fieldset class="form-group">
+            <legend class="col-form-label">Mood</legend>
+            <div class="form-check form-check-inline" th:each="i: ${#numbers.sequence(1, 5)}">
+                <input class="form-check-input" th:field="*{mood}" type="radio" th:value="${i}">
+                <label class="form-check-label">
+                    <th:block th:switch="${i}">
+                        <span th:case="1">
+                            Very bad
+                        </span>
+                        <span th:case="2">
+                            Bad
+                        </span>
+                        <span th:case="3">
+                            Normal
+                        </span>
+                        <span th:case="4">
+                            Good
+                        </span>
+                        <span th:case="5">
+                            Very good
+                        </span>
+                    </th:block>
+                </label>
+            </div>
+            <span class="invalid-feedback" th:if="${#fields.hasErrors('mood')}" th:errors="*{mood}">Mood Error</span>
+        </fieldset>
+
+        <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Insert</button>
         <br>
         <a class="btn btn-lg btn-primary btn-block" href="/" role="button">Cancel</a>

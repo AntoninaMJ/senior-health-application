@@ -18,7 +18,6 @@ public class HistoryController {
     private final ResultRepository repository;
     private final UserService userService;
 
-
     public HistoryController(ResultRepository repository, UserService userService) {
         this.repository = repository;
         this.userService = userService;
