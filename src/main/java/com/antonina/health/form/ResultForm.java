@@ -3,7 +3,7 @@ package com.antonina.health.form;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class InsertResultForm {
+public class ResultForm {
 
     @NotNull
     @Max(200)

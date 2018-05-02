@@ -1,5 +1,6 @@
 package com.antonina.health.controller;
 
+import com.antonina.health.domain.User;
 import com.antonina.health.form.RegisterUserForm;
 import com.antonina.health.service.RegisterUserService;
 import org.springframework.stereotype.Controller;
@@ -29,10 +30,22 @@ public class RegisterUserController {
 
     @PostMapping
     public String doRegister(@Validated @ModelAttribute RegisterUserForm registerUserForm, BindingResult bindingResult) {
+        User user = registerUserService.getUserRepository().findByEmail(registerUserForm.getEmail());
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        registerUserService.registerUser(registerUserForm);
-        return "login";
+
+        if (user == null) {
+            if (registerUserForm.getPassword().equals(registerUserForm.getPasswordRepeat())) {
+                registerUserService.registerUser(registerUserForm);
+                return "redirect:/login";
+            }
+            return "register";
+        } else {
+            user.setActive(true);
+            registerUserService.getUserRepository().save(user);
+
+            return "redirect:/login";
+        }
     }
 }

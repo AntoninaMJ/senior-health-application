@@ -1,7 +1,7 @@
 package com.antonina.health.controller;
 
 
-import com.antonina.health.form.InsertResultForm;
+import com.antonina.health.form.ResultForm;
 import com.antonina.health.service.InsertResultService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,16 +24,16 @@ public class InsertResultController {
 
     @GetMapping
     public String insert(Model model) {
-        model.addAttribute("insertResultForm", new InsertResultForm());
+        model.addAttribute("resultForm", new ResultForm());
         return "insert";
     }
 
     @PostMapping
-    public String doInsert(@Validated @ModelAttribute InsertResultForm insertResultForm, BindingResult bindingResult) {
+    public String doInsert(@Validated @ModelAttribute ResultForm resultForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "insert";
         }
-        insertResultService.insertResults(insertResultForm);
-        return "history";
+        insertResultService.insertResults(resultForm);
+        return "redirect:/history";
     }
 }

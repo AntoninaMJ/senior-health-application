@@ -18,6 +18,10 @@ public class UserService implements UserDetailsService {
         this.repository = repository;
     }
 
+    public UserRepository getRepository() {
+        return repository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByEmail(username);

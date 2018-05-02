@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Home Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,15 +7,17 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p th:text="'User name: ' + ${name}"/>
-
-<p>
-    <a class="btn btn-primary" href="/history" role="button">history</a>
-    <a class="btn btn-primary" href="/insert" role="button">insert data</a>
-    <a class="btn btn-primary" href="/settings" role="button">settings</a>
-    <a class="btn btn-primary" href="/logout" role="button">logout</a>
-</p>
-
+<div class="container">
+    <div class="text-center">
+        <br>
+        <h2>Hello, [[${name}]]!</h2>
+        <br>
+        <a class="btn btn-primary" href="/history" role="button">History</a>
+        <a class="btn btn-primary" href="/insert" role="button">Insert data</a>
+        <a class="btn btn-primary" href="/settings" role="button">Settings</a>
+        <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+    </div>
+</div>
 
 </body>
 </html>

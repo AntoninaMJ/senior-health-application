@@ -7,16 +7,50 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p th:text="'Ustawienia użytkownika: ' + ${name}"/>
+<div class="container">
+    <h2 class="text-center">Ustawienia użytkownika: [[${name}]]</h2>
 
-<p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>First name</td>
+            <td th:text="${results.firstName}"></td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td th:text="${results.lastName}"></td>
+        </tr>
+        <tr>
+            <td>Birth date</td>
+            <td th:text="${#temporals.format(results.birthDate, 'dd-MM-yyyy')}"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td th:text="${results.gender}"></td>
+        </tr>
 
-    <a class="btn btn-primary" role="button">edit</a>
-    <a class="btn btn-primary" role="button">save</a>
-    <a class="btn btn-primary" role="button">cancel</a>
-    <a class="btn btn-primary" href="/" role="button">home</a>
+        </tbody>
+    </table>
 
-</p>
+    <div class="text-center">
+        <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/editUser}">Edit</a>
+        <br>
+        <br>
+        <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/editUserPassword}">Edit password</a>
+        <br>
+        <br>
+        <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/deleteUser}">Delete</a>
+        <br>
+        <br>
+        <a class="btn btn-lg btn-primary btn-block" href="/">Home</a>
+    </div>
+</div>
 
 </body>
 </html>

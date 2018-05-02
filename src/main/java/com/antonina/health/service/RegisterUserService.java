@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RegisterUserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public RegisterUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.repository = userRepository;
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
     public void registerUser(RegisterUserForm registerUserForm) {
@@ -23,7 +27,10 @@ public class RegisterUserService {
         user.setPassword(passwordEncoder.encode(registerUserForm.getPassword()));
         user.setFirstName(registerUserForm.getFirstName());
         user.setLastName(registerUserForm.getLastName());
+        user.setBirthDate(registerUserForm.getBirthDate());
+        user.setGender(registerUserForm.getGender());
+        user.setActive(true);
 
-        repository.save(user); // insert into users(id, firstname, lastname, birthdate, gender) values(user.getId(), ....
+        userRepository.save(user);
     }
 }

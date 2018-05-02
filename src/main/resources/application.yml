@@ -1,13 +1,13 @@
 spring:
   datasource:
-#    url: jdbc:mariadb://localhost:3306/seniorhealth
-#    username: seniorhealth
-#    password: paSs1234Word
-#    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:oracle:thin:@//localhost:1521/orcl
-    username: antonina
-    password: antonina
-    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:mariadb://localhost:3306/seniorhealth
+    username: seniorhealth
+    password: paSs1234Word
+    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:oracle:thin:@//localhost:1521/orcl
+#    username: antonina
+#    password: antonina
+#    driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     hibernate:
       ddl-auto: update # auto create/update tables in db
@@ -16,9 +16,9 @@ server:
   port: 8080
 
 senior-health:
-  minPressureSys: 0
-  maxPressureSys: 100
-  minPressureDia: 0
-  maxPressureDia: 100
+  minOptPressureSys: 100
+  maxOptPressureSys: 130
+  minOptPressureDia: 50
+  maxOptPressureDia: 90
   optTemerature: 36.6
   optMood: 3

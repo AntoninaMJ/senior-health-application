@@ -7,17 +7,58 @@
     <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p th:text="'Historia wpisow uzytkownika: ' + ${name}"/>
-<p>
-    <a class="btn btn-primary" role="button">edit</a>
-    <a class="btn btn-primary" role="button">delete</a>
-    <br>
-    <a class="btn btn-primary" role="button">save</a>
-    <a class="btn btn-primary" role="button">cancel</a>
-    <a class="btn btn-primary" href="/">home</a>
-</p>
+<div class="container">
+    <h2>Historia wpisow uzytkownika: [[${name}]]</h2>
+    <h3>Strona nr: [[${results.number + 1}]]</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{/history(sort='dateTime', dir=${dir=='asc'?'desc':'asc'}, page=${results.number})}">Date</a>
+            </th>
+            <th><a th:href="@{/history(sort='pressureSys', dir=${dir=='asc'?'desc':'asc'}, page=${results.number})}">Pressure
+                SYS</a></th>
+            <th><a th:href="@{/history(sort='pressureDia', dir=${dir=='asc'?'desc':'asc'}, page=${results.number})}">Pressure
+                DIA</a></th>
+            <th><a th:href="@{/history(sort='temperature', dir=${dir=='asc'?'desc':'asc'}, page=${results.number})}">Temparature</a>
+            </th>
+            <th><a th:href="@{/history(sort='mood', dir=${dir=='asc'?'desc':'asc'}, page=${results.number})}">Mood</a>
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${#temporals.format(result.dateTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="${result.pressureSys}"></td>
+            <td th:text="${result.pressureDia}"></td>
+            <td th:text="${result.temperature}"></td>
+            <td th:text="${result.mood}"></td>
+            <td><a class="btn btn-primary" role="button" th:href="@{/editResult(id=${result.id})}">edit</a>
+                <a class="btn btn-primary" role="button" th:href="@{/deleteResult(id=${result.id})}">delete</a>
+            </td>
+        </tr>
 
-[[${optMood}]]
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:if="${results.hasPrevious()}"><a class="page-link"
+                                                                      th:href="@{/history(sort=${sort}, dir=${dir}, page=${results.number - 1})}">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">[[${results.number +
+                1}]] / [[${results.getTotalPages()}]]</a></li>
+            <li class="page-item" th:if="${results.hasNext()}"><a class="page-link"
+                                                                  th:href="@{/history(sort=${sort}, dir=${dir},page=${results.number} + 1)}">Next</a>
+            </li>
+        </ul>
+    </nav>
 
+    <div class="text-center">
+        <a class="btn btn-primary" href="/showChart">Show chart</a>
+        <a class="btn btn-primary" href="/insert">Insert data</a>
+        <a class="btn btn-primary" href="/">Home</a>
+    </div>
+</div>
 </body>
 </html>

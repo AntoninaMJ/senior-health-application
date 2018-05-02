@@ -7,43 +7,43 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "senior-health")
 public class ApplicationConfigProperties {
 
-    private int minPressureSys;
-    private int maxPressureSys;
-    private int minPressureDia;
-    private int maxPressureDia;
+    private int minOptPressureSys;
+    private int maxOptPressureSys;
+    private int minOptPressureDia;
+    private int maxOptPressureDia;
     private float optTemperature;
     private int optMood;
 
-    public int getMinPressureSys() {
-        return minPressureSys;
+    public int getMinOptPressureSys() {
+        return minOptPressureSys;
     }
 
-    public void setMinPressureSys(int minPressureSys) {
-        this.minPressureSys = minPressureSys;
+    public void setMinOptPressureSys(int minOptPressureSys) {
+        this.minOptPressureSys = minOptPressureSys;
     }
 
-    public int getMaxPressureSys() {
-        return maxPressureSys;
+    public int getMaxOptPressureSys() {
+        return maxOptPressureSys;
     }
 
-    public void setMaxPressureSys(int maxPressureSys) {
-        this.maxPressureSys = maxPressureSys;
+    public void setMaxOptPressureSys(int maxOptPressureSys) {
+        this.maxOptPressureSys = maxOptPressureSys;
     }
 
-    public int getMinPressureDia() {
-        return minPressureDia;
+    public int getMinOptPressureDia() {
+        return minOptPressureDia;
     }
 
-    public void setMinPressureDia(int minPressureDia) {
-        this.minPressureDia = minPressureDia;
+    public void setMinOptPressureDia(int minOptPressureDia) {
+        this.minOptPressureDia = minOptPressureDia;
     }
 
-    public int getMaxPressureDia() {
-        return maxPressureDia;
+    public int getMaxOptPressureDia() {
+        return maxOptPressureDia;
     }
 
-    public void setMaxPressureDia(int maxPressureDia) {
-        this.maxPressureDia = maxPressureDia;
+    public void setMaxOptPressureDia(int maxOptPressureDia) {
+        this.maxOptPressureDia = maxOptPressureDia;
     }
 
     public float getOptTemperature() {

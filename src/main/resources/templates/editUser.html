@@ -1,33 +1,17 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Register</title>
+    <title>Edit user</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="POST" th:action="@{/register}" th:object="${registerUserForm}">
+    <form class="form-signin" method="POST" th:action="@{/editUser}" th:object="${editUserForm}">
 
-        <h2 class="form-signin-heading">Registration form</h2>
+        <h2 class="form-signin-heading">Edit user form</h2>
 
-        <label for="inputEmail">Email address</label>
-        <input type="text" id="inputEmail" th:field="*{email}" class="form-control" placeholder="Email address" required
-               autofocus>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
-
-        <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password"
-               required>
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
-
-        <label for="inputPasswordRepeat">Repeat password</label>
-        <input type="password" id="inputPasswordRepeat" th:field="*{passwordRepeat}" class="form-control"
-               placeholder="Password"
-               required>
-        <span th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}">Repeat password Error</span>
 
         <label for="inputFirstName">First name</label>
         <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control" placeholder="First name">
@@ -50,10 +34,12 @@
         <label class="form-check-label" for="inputGender2">Female gender</label>
 
         <br><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
         <br>
-        <a class="btn btn-lg btn-primary btn-block" href="/">Home</a>
+        <a class="btn btn-lg btn-primary btn-block" href="/">Cancel</a>
     </form>
 </div>
+
+
 </body>
 </html>

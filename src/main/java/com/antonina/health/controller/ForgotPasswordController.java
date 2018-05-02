@@ -1,5 +1,7 @@
 package com.antonina.health.controller;
 
+import com.antonina.health.domain.User;
+import com.antonina.health.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -9,21 +11,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/forgot-password")
+@RequestMapping("/forgotPassword")
 public class ForgotPasswordController {
+    UserService userService;
+
+    public ForgotPasswordController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public String forgotPassword() {
-        return "forgot-password";
+        return "forgotPassword";
     }
 
     @PostMapping
     public String sendEmail(@Validated @ModelAttribute String email, BindingResult bindingResult) {
+        User user = userService.getRepository().findByEmail(email);
+
         if (bindingResult.hasErrors()) {
             return "/";
         }
-        //znajdz email w bazie uzytkownkow, wyslij na niego email z haslem
-        return "login";
+        if (user == null) {
+            return "/";
+        } else {
+            user.setActive(true);
+            userService.getRepository().save(user);
+
+            return "login";
+        }
     }
 
 }

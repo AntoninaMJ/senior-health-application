@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home Page</title>
+    <title>Edit result</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
@@ -9,8 +9,8 @@
 <body>
 
 <div class="container">
-    <form class="form-signin" method="POST" th:action="@{/insert}" th:object="${resultForm}">
-        <h2 class="form-signin-heading">Insert form</h2>
+    <form class="form-signin" method="POST" th:action="@{/editResult(id=${id})}" th:object="${resultForm}">
+        <h2 class="form-signin-heading">Edit result form</h2>
 
         <label for="inputPressureSys">Pressure SYS</label>
         <input type="number" id="inputPressureSys" th:field="*{pressureSys}" class="form-control"
@@ -28,23 +28,13 @@
         <span th:if="${#fields.hasErrors('temperature')}" th:errors="*{temperature}">Temperature Error</span>
 
         <label for="inputMood">Mood</label>
-        <!--
-        <br/>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-            <label class="form-check-label" for="inlineRadio1">1</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            <label class="form-check-label" for="inlineRadio2">2</label>
-        -->
         <input type="number" id="inputMood" th:field="*{mood}" class="form-control" placeholder="Mood">
         <span th:if="${#fields.hasErrors('mood')}" th:errors="*{mood}">Mood Error</span>
 
         <br><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Insert</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
         <br>
-        <a class="btn btn-lg btn-primary btn-block" href="/" role="button">Cancel</a>
+        <a class="btn btn-lg btn-primary btn-block" href="/history" role="button">Cancel</a>
     </form>
 </div>
 </body>

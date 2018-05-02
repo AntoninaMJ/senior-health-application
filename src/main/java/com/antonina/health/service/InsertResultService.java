@@ -1,7 +1,7 @@
 package com.antonina.health.service;
 
 import com.antonina.health.domain.Result;
-import com.antonina.health.form.InsertResultForm;
+import com.antonina.health.form.ResultForm;
 import com.antonina.health.repository.ResultRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,14 @@ public class InsertResultService {
         this.userService = userService;
     }
 
-    public void insertResults(InsertResultForm insertResultForm) {
+    public void insertResults(ResultForm resultForm) {
         Result result = new Result();
         result.setUser(userService.getLoggedUser());
         result.setDateTime(LocalDateTime.now());
-        result.setPressureDia(insertResultForm.getPressureDia());
-        result.setPressureSys(insertResultForm.getPressureSys());
-        result.setTemperature(insertResultForm.getTemperature());
-        result.setMood(insertResultForm.getMood());
-        repository.save(result); // insert into users(id, firstname, lastname, birthdate, gender) values(user.getId(), ....
+        result.setPressureDia(resultForm.getPressureDia());
+        result.setPressureSys(resultForm.getPressureSys());
+        result.setTemperature(resultForm.getTemperature());
+        result.setMood(resultForm.getMood());
+        repository.save(result);
     }
 }

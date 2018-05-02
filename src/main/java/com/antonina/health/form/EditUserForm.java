@@ -3,53 +3,19 @@ package com.antonina.health.form;
 import com.antonina.health.domain.Gender;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
-public class RegisterUserForm {
+public class EditUserForm {
 
-    @NotEmpty
-    @Email
-    private String email;
-    @NotEmpty
-    private String password;
-    @NotEmpty
-    private String passwordRepeat;
     @NotEmpty
     private String firstName;
     @NotEmpty
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    //@NotNull
     private LocalDate birthDate;
-    //@NotNull
     private Gender gender;
 
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordRepeat() {
-        return passwordRepeat;
-    }
-
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
-    }
 
     public String getFirstName() {
         return firstName;
