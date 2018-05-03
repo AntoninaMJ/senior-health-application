@@ -12,31 +12,54 @@
 
         <h2 class="form-signin-heading">Edit user form</h2>
 
+        <div class="form-group">
+            <label for="inputFirstName">First name</label>
+            <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control"
+                   placeholder="First name">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</span>
+        </div>
 
-        <label for="inputFirstName">First name</label>
-        <input type="text" id="inputFirstName" th:field="*{firstName}" class="form-control" placeholder="First name">
-        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</span>
+        <div class="form-group">
+            <label for="inputLastName">Last name</label>
+            <input type="text" id="inputLastName" th:field="*{lastName}" class="form-control" placeholder="Last name">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</span>
+        </div>
 
-        <label for="inputLastName">Last name</label>
-        <input type="text" id="inputLastName" th:field="*{lastName}" class="form-control" placeholder="Last name">
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</span>
+        <div class="form-group">
+            <label for="inputBirthDate">Birth date</label>
+            <input type="date" id="inputBirthDate" th:field="*{birthDate}" class="form-control"
+                   placeholder="Birth date">
+            <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date Error</span>
+        </div>
 
-        <label for="inputBirthDate">Birth date</label>
-        <input type="date" id="inputBirthDate" th:field="*{birthDate}" class="form-control" placeholder="Birth date">
-        <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date Error</span>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="inputGender1" name="inputGender" th:field="*{gender}"
+                   value="MALE" checked>
+            <label class="form-check-label" for="inputGender1">Male gender</label>
+        </div>
 
-        <input class="form-check-input" type="radio" id="inputGender1" name="inputGender" th:field="*{gender}"
-               value="MALE" checked>
-        <label class="form-check-label" for="inputGender1">Male gender</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="inputGender2" name="inputGender" th:field="*{gender}"
+                   value="FEMALE" checked>
+            <label class="form-check-label" for="inputGender2">Female gender</label>
+            <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Gender Error</span>
+        </div>
 
-        <input class="form-check-input" type="radio" id="inputGender2" name="inputGender" th:field="*{gender}"
-               value="FEMALE" checked>
-        <label class="form-check-label" for="inputGender2">Female gender</label>
+        <div class="form-group">
+            <label for="selectNotifyHour">Notify hour</label>
+            <select class="form-control" id="selectNotifyHour" th:field="*{notifyHour}">
+                <option value="">----</option>
+                <option th:each="i: ${#numbers.sequence(0, 23)}"
+                        th:value="${i}">[[${i}]]:00
+                </option>
+            </select>
+            <span th:if="${#fields.hasErrors('notifyHour')}" th:errors="*{notifyHour}">Notify hour Error</span>
+        </div>
 
-        <br><br>
+        <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
         <br>
-        <a class="btn btn-lg btn-primary btn-block" href="/">Cancel</a>
+        <a class="btn btn-lg btn-primary btn-block" href="/settings">Cancel</a>
     </form>
 </div>
 

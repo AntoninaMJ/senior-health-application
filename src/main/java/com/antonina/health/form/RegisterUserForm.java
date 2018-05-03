@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class RegisterUserForm {
@@ -13,12 +12,6 @@ public class RegisterUserForm {
     @NotEmpty
     @Email
     private String email;
-    @NotEmpty
-    @Size(min = 5, max = 50)
-    private String password;
-    @NotEmpty
-    @Size(min = 5, max = 50)
-    private String passwordRepeat;
     @NotEmpty
     private String firstName;
     @NotEmpty
@@ -33,22 +26,6 @@ public class RegisterUserForm {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordRepeat() {
-        return passwordRepeat;
-    }
-
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
     }
 
     public String getFirstName() {

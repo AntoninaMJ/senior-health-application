@@ -1,14 +1,17 @@
 package com.antonina.health.form;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class EditUserPasswordForm {
 
     @NotEmpty
     private String passwordOld;
     @NotEmpty
+    @Size(min = 5, max = 50)
     private String password;
     @NotEmpty
+    @Size(min = 5, max = 50)
     private String passwordRepeat;
 
     public String getPasswordOld() {

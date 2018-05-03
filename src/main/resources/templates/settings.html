@@ -34,6 +34,10 @@
             <td>Gender</td>
             <td th:text="${results.gender}"></td>
         </tr>
+        <tr>
+            <td>Notify hour</td>
+            <td th:text="${results.notifyHour != null ? results.notifyHour + ':00' : ''}"></td>
+        </tr>
 
         </tbody>
     </table>
@@ -41,12 +45,9 @@
     <div class="text-center">
         <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/editUser}">Edit</a>
         <br>
-        <br>
         <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/editUserPassword}">Edit password</a>
         <br>
-        <br>
         <a class="btn btn-lg btn-primary btn-block" role="button" th:href="@{/deleteUser}">Delete</a>
-        <br>
         <br>
         <a class="btn btn-lg btn-primary btn-block" href="/">Home</a>
     </div>

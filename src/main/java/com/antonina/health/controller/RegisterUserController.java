@@ -3,6 +3,9 @@ package com.antonina.health.controller;
 import com.antonina.health.domain.User;
 import com.antonina.health.form.RegisterUserForm;
 import com.antonina.health.repository.UserRepository;
+import com.antonina.health.util.PasswordUtil;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterUserController {
 
     private final UserRepository userRepository;
+    private final JavaMailSender emailSender;
     private final PasswordEncoder passwordEncoder;
 
-    public RegisterUserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public RegisterUserController(UserRepository userRepository, JavaMailSender emailSender, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.emailSender = emailSender;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -43,29 +48,29 @@ public class RegisterUserController {
             return setError(model, "User with given email already exists");
         }
 
-        if (!registerUserForm.getPassword().equals(registerUserForm.getPasswordRepeat())) {
-            return setError(model, "Repeat password should be the same as password");
-        }
-
-        registerUser(registerUserForm);
-
-        return "redirect:/login";
-    }
-
-    private String setError(Model model, String message) {
-        model.addAttribute("error", message);
-        return "register";
-    }
-
-    private void registerUser(RegisterUserForm registerUserForm) {
-        User user = new User();
+        user = new User();
         user.setEmail(registerUserForm.getEmail());
-        user.setPassword(passwordEncoder.encode(registerUserForm.getPassword()));
         user.setFirstName(registerUserForm.getFirstName());
         user.setLastName(registerUserForm.getLastName());
         user.setBirthDate(registerUserForm.getBirthDate());
         user.setGender(registerUserForm.getGender());
         user.setActive(true);
+
+        String newPassword = PasswordUtil.generatePassword();
+        user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmail());
+        message.setSubject("Senior Health - password");
+        message.setText("Hi! Your password: " + newPassword);
+        emailSender.send(message);
+
+        return "redirect:/login?register=true";
+    }
+
+    private String setError(Model model, String message) {
+        model.addAttribute("error", message);
+        return "register";
     }
 }

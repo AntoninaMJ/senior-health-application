@@ -27,13 +27,17 @@ public class EditUserController {
 
     @GetMapping
     public String edit(Model model) {
-        EditUserForm editUserForm = new EditUserForm();
-        editUserForm.setFirstName(userService.getLoggedUser().getFirstName());
-        editUserForm.setLastName(userService.getLoggedUser().getLastName());
-        editUserForm.setBirthDate(userService.getLoggedUser().getBirthDate());
-        editUserForm.setGender(userService.getLoggedUser().getGender());
+        User loggedUser = userService.getLoggedUser();
+        User user = userRepository.findById(loggedUser.getId()).get();
 
-        model.addAttribute("editUserForm", editUserForm);
+        EditUserForm editUserForm = new EditUserForm();
+        editUserForm.setFirstName(user.getFirstName());
+        editUserForm.setLastName(user.getLastName());
+        editUserForm.setBirthDate(user.getBirthDate());
+        editUserForm.setGender(user.getGender());
+        editUserForm.setNotifyHour(user.getNotifyHour());
+
+        model.addAttribute(editUserForm);
         return "editUser";
     }
 
@@ -42,12 +46,17 @@ public class EditUserController {
         if (bindingResult.hasErrors()) {
             return "editUser";
         }
-        User user = userService.getLoggedUser();
+
+        User loggedUser = userService.getLoggedUser();
+        User user = userRepository.findById(loggedUser.getId()).get();
+
         user.setFirstName(editUserForm.getFirstName());
         user.setLastName(editUserForm.getLastName());
         user.setBirthDate(editUserForm.getBirthDate());
         user.setGender(editUserForm.getGender());
+        user.setNotifyHour(editUserForm.getNotifyHour());
         userRepository.save(user);
+
         return "redirect:/settings";
     }
 }

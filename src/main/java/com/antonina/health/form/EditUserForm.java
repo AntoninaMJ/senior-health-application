@@ -3,6 +3,8 @@ package com.antonina.health.form;
 import com.antonina.health.domain.Gender;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
@@ -15,7 +17,17 @@ public class EditUserForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     private Gender gender;
+    @Min(0)
+    @Max(23)
+    private Integer notifyHour;
 
+    public Integer getNotifyHour() {
+        return notifyHour;
+    }
+
+    public void setNotifyHour(Integer notifyHour) {
+        this.notifyHour = notifyHour;
+    }
 
     public String getFirstName() {
         return firstName;

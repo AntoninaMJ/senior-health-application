@@ -3,6 +3,7 @@ package com.antonina.health.controller;
 import com.antonina.health.domain.User;
 import com.antonina.health.form.ForgotPasswordForm;
 import com.antonina.health.repository.UserRepository;
+import com.antonina.health.util.PasswordUtil;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Random;
 
 @Controller
 @RequestMapping("/forgotPassword")
@@ -32,7 +31,8 @@ public class ForgotPasswordController {
     }
 
     @GetMapping
-    public String forgotPassword() {
+    public String forgotPassword(Model model) {
+        model.addAttribute(new ForgotPasswordForm());
         return "forgotPassword";
     }
 
@@ -41,15 +41,15 @@ public class ForgotPasswordController {
         User user = userRepository.findByEmailAndActiveTrue(forgotPasswordForm.getEmail());
 
         if (bindingResult.hasErrors()) {
-            return "/forgotPassword";
+            return "forgotPassword";
         }
 
         if (user == null) {
             model.addAttribute("error", "User with given email doesn't exist");
-            return "/forgotPassword";
+            return "forgotPassword";
         }
 
-        String newPassword = alphaNumericString(8);
+        String newPassword = PasswordUtil.generatePassword();
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
@@ -64,15 +64,6 @@ public class ForgotPasswordController {
         return "redirect:/login?forgotPassword=true";
     }
 
-    private String alphaNumericString(int len) {
-        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random rnd = new Random();
 
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++) {
-            sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        }
-        return sb.toString();
-    }
 
 }

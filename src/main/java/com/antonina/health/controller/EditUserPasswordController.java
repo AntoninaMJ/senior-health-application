@@ -34,17 +34,28 @@ public class EditUserPasswordController {
     }
 
     @PostMapping
-    public String doEdit(@Validated @ModelAttribute EditUserPasswordForm editUserPasswordForm, BindingResult bindingResult) {
+    public String doEdit(@Validated @ModelAttribute EditUserPasswordForm editUserPasswordForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "editUserPassword";
         }
-        if (editUserPasswordForm.getPassword().equals(editUserPasswordForm.getPasswordRepeat()) &&
-                passwordEncoder.encode(editUserPasswordForm.getPasswordOld()).equals(userService.getLoggedUser().getPassword())) {
-            User user = userService.getLoggedUser();
-            user.setPassword(passwordEncoder.encode(editUserPasswordForm.getPassword()));
-            userRepository.save(user);
-            return "redirect:/login";
+
+        String passwordOld = editUserPasswordForm.getPasswordOld();
+        String passwordEncoded = userService.getLoggedUser().getPassword();
+
+        if (!passwordEncoder.matches(passwordOld, passwordEncoded)) {
+            model.addAttribute("error", "Wrong actual password.");
+            return "editUserPassword";
         }
-        return "editUserPassword";
+
+        if (!editUserPasswordForm.getPassword().equals(editUserPasswordForm.getPasswordRepeat())) {
+            model.addAttribute("error", "Repeat password should be the same as password.");
+            return "editUserPassword";
+        }
+
+        User user = userService.getLoggedUser();
+        user.setPassword(passwordEncoder.encode(editUserPasswordForm.getPassword()));
+        userRepository.save(user);
+
+        return "redirect:/settings";
     }
 }
