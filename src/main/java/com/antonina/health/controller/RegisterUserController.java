@@ -54,6 +54,7 @@ public class RegisterUserController {
         user.setLastName(registerUserForm.getLastName());
         user.setBirthDate(registerUserForm.getBirthDate());
         user.setGender(registerUserForm.getGender());
+        user.setNotifyHour(registerUserForm.getNotifyHour());
         user.setActive(true);
 
         String newPassword = PasswordUtil.generatePassword();
