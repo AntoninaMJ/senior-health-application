@@ -37,8 +37,9 @@ public class EditResultController {
     @PostMapping
     public String doEdit(@Validated @ModelAttribute ResultForm resultForm,
                          BindingResult bindingResult,
-                         @RequestParam long id) {
+                         @RequestParam long id, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("id", id);
             return "editResult";
         }
 
