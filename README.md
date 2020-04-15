@@ -29,10 +29,8 @@ System do:
 * JAVA 8
 * Gradle
 * Spring Boot (Security, DataJPA, Web)
-* Thymeleaf
+* REST
 * Hibernate
-* HTML
-* CSS
 
 ## Setup
 To run the App You need to build and run project with gradle wrapper:
