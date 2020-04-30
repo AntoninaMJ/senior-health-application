@@ -12,7 +12,7 @@
 * Created by Antonina Marikhina ([Git Hub repositories](https://github.com/AntoninaMJ)).
 
 ## User stories
-Application helps people take care about their health.
+Application helps people take care of their health.
 
 User can:
 * logIn/logOut,
